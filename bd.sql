@@ -37,9 +37,9 @@ CREATE TABLE funcionario (
 );
 
 CREATE TABLE quarto (
-	numero INT,
+    numero INT,
     tipo VARCHAR(50),
-    vista VARCHAR(50),
+    vista CHAR(1),
     valor_diaria INT,
     PRIMARY KEY (numero)
 );
@@ -47,7 +47,7 @@ CREATE TABLE quarto (
 --- entidade fraca ---
 
 CREATE TABLE dependente (
-	cpf_dependente CHAR(11),
+    cpf_dependente CHAR(11),
     cpf_cliente CHAR(11),
     data_nascimento DATE,
     nome VARCHAR(50),
