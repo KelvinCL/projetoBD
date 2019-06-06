@@ -1,21 +1,21 @@
 --entidade regular: regra 1--
 CREATE TABLE cliente (
-	cpf CHAR(11),
-	nome VARCHAR(50) NOT NULL,
-	sexo CHAR(1),
-	endereco VARCHAR(100) NOT NULL,
-        email VARCHAR(50) NOT NULL,
-	data_nascimento DATE NOT NULL,
-        FOREIGN KEY (id_aval) REFERENCES avaliacao(id)
-	PRIMARY KEY (cpf)
+    cpf CHAR(11),
+    nome VARCHAR(50) NOT NULL,
+    sexo CHAR(1),
+    endereco VARCHAR(100) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    data_nascimento DATE NOT NULL,
+    PRIMARY KEY (cpf)
 );
+
 
 -- atributo multivalorado: regra 6 --
 CREATE TABLE tel_cliente (
-	telefone VARCHAR(20),
-	cpf_cliente CHAR(11),
-	PRIMARY KEY (telefone, cpf_cliente),
-        FOREIGN KEY (cpf_cliente) REFERENCES cliente(cpf)	
+    telefone VARCHAR(20),
+    cpf_cliente CHAR(11),
+    PRIMARY KEY (telefone, cpf_cliente),
+    FOREIGN KEY (cpf_cliente) REFERENCES cliente(cpf)	
 );
 
 --- entidade fraca ---
