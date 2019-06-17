@@ -1,3 +1,9 @@
+-- Integrantes: 
+-- Kelvin Cirne de Lacerda Custódio
+-- José Vinícius Lacerda
+-- Thiago Cunha
+-- José Roberto
+
 --1ª questão
 
 SELECT COUNT(*) FROM RESERVA
