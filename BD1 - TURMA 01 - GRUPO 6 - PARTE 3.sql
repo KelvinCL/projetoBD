@@ -21,7 +21,7 @@ CREATE VIEW func_sal_menor_que_media AS
   SELECT TIPO, NOME, VALOR
   FROM PRODUTO 	
   GROUP BY TIPO, NOME, VALOR
-  ORDER BY VALOR desc;
+  ORDER BY VALOR DESC;
 
 -- 4ª questão: Liste todas as reservas com duração de um dia.
 
@@ -61,7 +61,7 @@ WHERE (EXTRACT(day FROM dia_check_out) = 31 AND
   SELECT TIPO, NUMERO,VALOR_DIARIA
   FROM QUARTO
   GROUP BY TIPO, NUMERO, VALOR_DIARIA
-  ORDER BY VALOR_DIARIA DESC
+  ORDER BY VALOR_DIARIA DESC;
 
 --- Q10 ---
 
@@ -74,7 +74,7 @@ WHERE (EXTRACT(day FROM dia_check_out) = 31 AND
         FROM (SELECT CPF_CLIENTE, NOME
               FROM DEPENDENTE
               WHERE NOME LIKE '%Maria%') D, CLIENTE C
-        WHERE C.CPF = D.CPF_CLIENTE  
+        WHERE C.CPF = D.CPF_CLIENTE;  
 
 --- Q13 ---
 
