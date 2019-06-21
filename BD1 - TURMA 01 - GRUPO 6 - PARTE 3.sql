@@ -80,7 +80,16 @@ WHERE (EXTRACT(day FROM dia_check_out) = 31 AND
  GROUP BY TIPO, NUMERO, VALOR_DIARIA
  ORDER BY VALOR_DIARIA DESC;                                                                                               
 
---- Q11 ---     
+--- Q11 --- 
+CREATE VIEW COMPRA_P_FRIGO_REST AS
+                  SELECT HC.CPF
+                  FROM (SELECT C.CPF, H.NUMERO_QUARTO
+                        FROM CLIENTE C, HOSPEDA H
+                        WHERE C.CPF = H.CPF_CLIENTE) HC,
+                        (SELECT V.NUMERO_QUARTO
+                        FROM VENDA V, PRODUTO P
+                        WHERE REGEXP_LIKE (P.TIPO, '(R|r)estaurante$') OR REGEXP_LIKE (P.TIPO, '(F|f)rigoba$')) PV
+                  WHERE PV.NUMERO_QUARTO = HC.NUMERO_QUARTO                                                                                               
 
 --- Q12 ---
 
