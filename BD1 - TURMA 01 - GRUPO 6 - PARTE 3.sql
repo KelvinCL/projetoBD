@@ -91,6 +91,15 @@ WHERE (EXTRACT(day FROM dia_check_out) = 31 AND
 
 --- Q15 ---
 
+CREATE TRIGGER MANUTENCAO_INVALIDA
+    BEFORE INSERT ON MANUTENCAO
+    FOR EACH ROW
+ BEGIN
+  IF (:NEW.NOME = :OLD.NOME) THEN
+    raise_application_error(-20001, 'Já foi realizada manutenção por esse funcionario nesse quarto');
+  END IF;
+END;
+                                                                                               
 --- Q16 ---
  
  CREATE OR REPLACE FUNCTION calculaConsumoByClienteNoPeriodo(client_cpf VARCHAR2(14), dt_inicial DATE, dt_final DATE)
