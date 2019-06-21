@@ -112,15 +112,23 @@ END;
                                                                                                
 --- Q16 ---
  
- CREATE OR REPLACE FUNCTION calculaConsumoByClienteNoPeriodo(client_cpf VARCHAR2(14), dt_inicial DATE, dt_final DATE)
-    RETURN NUMBER
-     IS valorConsumo  NUMBER;
+ create or replace FUNCTION calculaConsumo(cpf VARCHAR2, inicio DATE, fim DATE)
+  RETURN NUMBER
+   IS co NUMBER;
 
-  BEGIN
+BEGIN
+  
+  SELECT VP.co
+  FROM (SELECT V.NUMERO_QUARTO, SUM(V.QUANTIDADE * P.VALOR) AS co
+      FROM VENDA V, PRODUTO P
+      GROUP BY V.NUMERO_QUARTO
+      HAVING DATA BETWEEN inicio AND fim) VP, 
+      HOSPEDA H
+  WHERE VP.NUMERO_QUARTO = H.NUMERO_QUARTO AND H.CPF_CLIENTE=cpf
+  
+  RETURN(co);
 
-    RETURN(valorConsumo);
-
-  END calculaConsumoByClienteNoPeriodo;
+END calculaConsumo;
 
 
 --- Q17 ---
