@@ -51,13 +51,13 @@ ORDER BY CONSUMO_PRODUTO DESC;
   ORDER BY SALARIO DESC;
   
 --- Q7 ---
+SELECT CPF
+  FROM (SELECT C.CPF AS CLIENTE
+        FROM CLIENTE C, TELEFONE T
+        WHERE C.CPF = T.CPF_CLIENTE AND T.TELEFONE LIKE '(83)33%') CL INNER JOIN DEPENDENTE D ON (CL.CLIENTE= D.CPF_CLIENTE)
+  GROUP BY CPF 
+  HAVING COUNT(CPF)>2
 
-  SELECT C.CPF, C.NOME
-  FROM (SELECT HS.CPF_CLIENTE
-        FROM QUARTO Q, HOSPEDA HS
-        WHERE HS.NUMERO_QUARTO = Q.NUMERO AND (REGEXP_LIKE (Q.TIPO, 'triplo$') OR REGEXP_LIKE (Q.TIPO, 'duplo casal$'))) H , CLIENTE C
-  WHERE H.CPF_CLIENTE = C.CPF;
-  
   
 -- 8ª questão: Liste todos os clientes que reservaram quarto para o ano novo de 2019 (31/12/2018).
 
@@ -68,12 +68,17 @@ WHERE (EXTRACT(day FROM dia_check_out) = 31 AND
 
 --- Q9 ---
 
-  SELECT TIPO, NUMERO,VALOR_DIARIA
-  FROM QUARTO
-  GROUP BY TIPO, NUMERO, VALOR_DIARIA
-  ORDER BY VALOR_DIARIA DESC;
+  SELECT C.CPF, C.NOME
+  FROM (SELECT HS.CPF_CLIENTE
+        FROM QUARTO Q, HOSPEDA HS
+        WHERE HS.NUMERO_QUARTO = Q.NUMERO AND (REGEXP_LIKE (Q.TIPO, 'triplo$') OR REGEXP_LIKE (Q.TIPO, 'duplo casal$'))) H , CLIENTE C
+  WHERE H.CPF_CLIENTE = C.CPF;                                                                                             
 
 --- Q10 ---
+ SELECT TIPO, NUMERO,VALOR_DIARIA
+ FROM QUARTO
+ GROUP BY TIPO, NUMERO, VALOR_DIARIA
+ ORDER BY VALOR_DIARIA DESC;                                                                                               
 
 --- Q11 ---     
 
